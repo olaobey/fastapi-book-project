@@ -15,7 +15,7 @@ jobs:
 
       - name: Deploy to Windows Server
         run: |
-          ssh user@192.168.24.246 "powershell.exe -Command `
+          ssh Administrator@192.168.24.246 "powershell.exe -Command `
             cd C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project; `
             git fetch --all; `
             git reset --hard origin/main; `
