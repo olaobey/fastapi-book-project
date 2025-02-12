@@ -17,7 +17,8 @@ jobs:
         run: |
           ssh user@192.168.24.246 "powershell.exe -Command `
             cd C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project; `
-            git pull origin main; `
-            venv\Scripts\activate; `
+            git fetch --all; `
+            git reset --hard origin/main; `
+            .\\venv\\Scripts\\activate; `
             pip install -r requirements.txt; `
             Restart-Service -Name fastapi"
