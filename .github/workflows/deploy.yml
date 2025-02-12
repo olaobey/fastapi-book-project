@@ -1,0 +1,24 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to Windows Server
+        run: |
+          ssh user@your-windows-server-ip 'powershell.exe' << EOF
+            cd C:\path\to\your\app
+            git pull origin main
+            venv\Scripts\activate
+            pip install -r requirements.txt
+            Restart-Service -Name fastapi
+          EOF
