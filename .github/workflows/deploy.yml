@@ -15,10 +15,9 @@ jobs:
 
       - name: Deploy to Windows Server
         run: |
-          ssh user@your-windows-server-ip 'powershell.exe' << EOF
-            cd C:\path\to\your\app
-            git pull origin main
-            venv\Scripts\activate
-            pip install -r requirements.txt
-            Restart-Service -Name fastapi
-          EOF
+          ssh user@your-windows-server-ip "powershell.exe -Command `
+            cd C:\path\to\your\app; `
+            git pull origin main; `
+            venv\Scripts\activate; `
+            pip install -r requirements.txt; `
+            Restart-Service -Name fastapi"
