@@ -15,8 +15,8 @@ jobs:
 
       - name: Deploy to Windows Server
         run: |
-          ssh user@your-windows-server-ip "powershell.exe -Command `
-            cd C:\path\to\your\app; `
+          ssh user@192.168.24.246 "powershell.exe -Command `
+            cd C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project; `
             git pull origin main; `
             venv\Scripts\activate; `
             pip install -r requirements.txt; `
