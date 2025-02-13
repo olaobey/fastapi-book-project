@@ -1,24 +1,25 @@
-name: Deploy Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
+eploy:
     runs-on: windows-latest
+    needs: test
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production-files
+          path: ./fastapi-book-project/test
+
+      - name: Authenticate GitHub CLI
+        run: echo "${{ secrets.WORKFLOW }}" | gh auth login --with-token
+
       - name: Deploy to Windows Server
         run: |
-          ssh Administrator@192.168.24.246 "powershell.exe -Command `
-            cd C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project; `
-            git fetch --all; `
-            git reset --hard origin/main; `
-            .\\venv\\Scripts\\activate; `
-            pip install -r requirements.txt; `
-            Restart-Service -Name fastapi"
+          gh repo clone olaobey/fastapi-book-project C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project
+          cd C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project
+          git reset --hard origin/main
+          call venv\Scripts\activate
+          pip install -r requirements.txt
+          Restart-Service -Name fastapi
