@@ -20,6 +20,6 @@ deploy:
           gh repo clone olaobey/fastapi-book-project "C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project"
           cd "C:\Users\Ajeigbe Olaoluwa Sam\fastapi-book-project"
           git reset --hard origin/main
-          call venv\Scripts\activate
+          venv\Scripts\Activate
           pip install -r requirements.txt
           Restart-Service -Name fastapi
